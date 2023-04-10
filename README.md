@@ -10,4 +10,4 @@ Install guide for running local env with docker compose:
 - Clone these repos under newly created folder:
 	- Microservice-auth
 	- Microservice-deployment
-- Run `docker-compose up` in microservice-deployment repo
+- Run `docker-compose up` in microservice-deployment folder
