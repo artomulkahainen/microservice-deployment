@@ -1,0 +1,34 @@
+version: "3.8"
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:21.0
+    ports:
+      - "8180:8180"
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+    command:
+      - start-dev
+      - --http-port=8180
+      #--auto-build \
+      #  --db=postgres --features=token-exchange \
+      #  --db-url=jdbc:postgresql://localhost:5432/keycloak --db-username=postgres --db-password=postgres \
+      #  --https-key-store-file=server.keystore --https-key-store-password=secret
+      #- --import-realm
+
+    # import existing realm
+    # volumes:
+    #  - /home/keycloak/realm.json:/opt/keycloak/data/import/realm.json
+  auth:
+    build: ../microservice-auth
+    ports:
+      - 3001:3001
+    volumes:
+      - microservice-auth:/src/
+    environment:
+      - NODE_ENV=prod
+    depends_on:
+      - keycloak
+volumes:
+  microservice-auth:
+  microservice-auth-db:
