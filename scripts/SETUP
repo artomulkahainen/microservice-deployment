@@ -1,0 +1,5 @@
+To run the create_postgres_container_db.sh:
+
+1. chmod +x create_postgres_container_db.sh
+2. Use this run command in linux in the same folder of script: "./create_postgres_container_db.sh"
+
